@@ -8,32 +8,33 @@
 </head>
 <body>
   <header>
-    <h1>Приглашаем на нашу свадьбу!</h1>
+    <h1>Свадьба Егора и Полины</h1>
+    <p>Мы рады видеть вас на нашем празднике любви!</p>
     <p>Дата: 20 июня 2025 г.</p>
     <p>Место: Ресторан "Вдохновение"</p>
   </header>
-  <section id="gallery">
-    <h2>Наши фото</h2>
-    <img src="photo1.jpg" alt="Фото 1">
-    <img src="photo2.jpg" alt="Фото 2">
-  </section>
-  <section id="rsvp">
-    <h2>Подтвердите участие</h2>
-    <form id="wedding-form">
-      <label for="name">Ваше имя:</label>
-      <input type="text" id="name" name="name" required>
+  <section id="form-section">
+    <h2>Подтвердите своё участие</h2>
+    <form action="#" method="POST">
+      <label for="name">Ваше имя</label>
+      <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
       
-      <label for="guests">Количество гостей:</label>
-      <input type="number" id="guests" name="guests" required>
+      <label for="guests">Количество гостей</label>
+      <input type="number" id="guests" name="guests" placeholder="Введите количество гостей" required>
       
-      <label for="message">Сообщение:</label>
-      <textarea id="message" name="message"></textarea>
+      <label for="message">Ваше сообщение</label>
+      <textarea id="message" name="message" placeholder="Напишите сообщение" rows="4"></textarea>
       
       <button type="submit">Отправить</button>
     </form>
   </section>
+  <section id="photos">
+    <h2>Фотографии с мероприятия</h2>
+    <p>Дорогие гости, фотографии вы сможете увидеть после мероприятия. Ссылка появится на этом месте.</p>
+    <a href="#" id="photos-link">Ссылка появится здесь</a>
+  </section>
   <footer>
-    <p>Мы будем рады вас видеть!</p>
+    <p>С любовью, Егор и Полина ❤️</p>
   </footer>
   <script src="script.js"></script>
 </body>
