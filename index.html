@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Свадебное приглашение</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Приглашаем на нашу свадьбу!</h1>
+    <p>Дата: 20 июня 2025 г.</p>
+    <p>Место: Ресторан "Вдохновение"</p>
+  </header>
+  <section id="gallery">
+    <h2>Наши фото</h2>
+    <img src="photo1.jpg" alt="Фото 1">
+    <img src="photo2.jpg" alt="Фото 2">
+  </section>
+  <section id="rsvp">
+    <h2>Подтвердите участие</h2>
+    <form id="wedding-form">
+      <label for="name">Ваше имя:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="guests">Количество гостей:</label>
+      <input type="number" id="guests" name="guests" required>
+      
+      <label for="message">Сообщение:</label>
+      <textarea id="message" name="message"></textarea>
+      
+      <button type="submit">Отправить</button>
+    </form>
+  </section>
+  <footer>
+    <p>Мы будем рады вас видеть!</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
+
