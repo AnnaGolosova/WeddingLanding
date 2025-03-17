@@ -25,6 +25,11 @@ span {
   font-size: 16px;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 p {
   font-family: "GoodVibesPro", sans-serif;
   font-size: 24px;
@@ -119,6 +124,69 @@ li {
   font-size: 30px;
 }
 
+#static-date {
+  text-align: center;
+}
+.date-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+#toggle-countdown {
+  position: absolute;
+  right: -60px;
+  top: 35px;
+}
+.countdown {
+  display: none;
+}
+.countdown ul {
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+.countdown ul li {
+  font-family: "UKIJChik";
+  list-style-type: none;
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.countdown ul li span {
+  position: relative;
+  display: block;
+  font-size: 48px;
+  color: #000;
+}
+/* .countdown ul li span::after,
+.countdown ul li span::before {
+  position: absolute;
+  content: "";
+  height: 30px;
+  width: 1px;
+  background-color: #000;
+  margin-top: 10px;
+}
+.countdown ul li span::after {
+  margin-left: 10px;
+}
+.countdown ul li span::before {
+  margin-right: 10px;
+} */
+
+.countdown ul li.separator {
+  font-family: monospace;
+  font-size: 48px;
+  line-height: 1;
+  color: #000;
+}
+
+.countdown ul li:first-of-type {
+  margin-right: 5rem;
+}
+
 .side {
   height: 100%;
   width: auto;
@@ -133,12 +201,32 @@ li {
   max-width: 500px;
 }
 
+.toggle-btn {
+  margin-left: 10px;
+  padding: 5px 8px;
+  font-size: 14px;
+  border: none;
+  background: #444;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.static-date {
+  /* display: block; */
+}
+
+.toggle-btn:hover {
+  background: #666;
+}
+
 .box {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   position: relative;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
 .link_place {
   height: 50px;
@@ -181,11 +269,7 @@ li {
   background-color: #000;
 }
 
-.place {
-  max-width: 45%;
-}
-
-.contact {
+.box_item {
   max-width: 45%;
 }
 .head_box::before,
@@ -228,18 +312,20 @@ li {
 }
 
 .button {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   background-color: black;
   color: #50c878;
   text-align: center;
   padding: 10px 40px;
   border-radius: 6px;
-  width: 50%;
+  width: 70%;
 }
 
 .button:hover {
   background-color: #50c878;
   color: #000000;
   transition: 0.2s;
+  cursor: pointer;
 }
 
 /* Стили для модального окна */
@@ -332,7 +418,8 @@ label {
   border-color: #013022;
   box-shadow: 0 0 10px #013022;
 }
-.item input[type="checkbox"]:checked + span {
+.item input[type="checkbox"]:checked + span,
+.item input[type="radio"]:checked + span {
   background-color: #013022;
   color: white;
   border-radius: 5px;
@@ -345,7 +432,139 @@ label {
     justify-content: unset;
   }
 }
-@media only screen and (max-width: 728px) {
+@media only screen and (max-width: 768px) {
+  .side {
+    max-height: 1800px;
+  }
+
+  .box {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 10px;
+  }
+  .head_box::before,
+  .head_box::after {
+    max-width: 100%;
+  }
+  .box_item {
+    max-width: 100%;
+    width: 100%;
+  }
+  .link_place a::after {
+    content: none;
+  }
+
+  .place {
+    position: relative;
+    padding-bottom: 10px;
+  }
+  .place::after {
+    content: "";
+    position: absolute;
+    bottom: -5px; /* Отступ линии от текста */
+    width: 100%; /* Длина линии */
+    height: 1px; /* Толщина линии */
+    background-color: black;
+  }
+  .link_place {
+    margin: 20px 0 10px 0;
+  }
+  .box::after {
+    width: 100%;
+  }
 }
-@media only screen and (max-width: 390px) {
+@media only screen and (max-width: 490px) {
+  .container {
+    padding-top: 40px;
+  }
+  .logo {
+    max-width: 60px;
+    max-height: 60px;
+  }
+  .content {
+    max-width: 150px;
+  }
+  .side {
+    max-height: 896px;
+  }
+
+  .header {
+    padding-bottom: 10px;
+  }
+  .header_invite {
+    padding-bottom: 10px;
+  }
+
+  .text {
+    padding-bottom: 10px;
+  }
+  p {
+    font-size: 16px;
+    margin: 0 -30px;
+  }
+  .header_invite p {
+    font-size: 24px;
+  }
+  .union {
+    font-size: 24px;
+  }
+  .persons {
+    padding-bottom: 10px;
+  }
+  .persons p {
+    font-size: 24px;
+  }
+  .date {
+    padding-bottom: 10px;
+  }
+  .date p {
+    font-size: 20px;
+  }
+  .date span {
+    font-size: 16px;
+  }
+  .countdown ul li {
+    margin: 0;
+    font-size: 12px;
+  }
+  .countdown ul li:first-of-type {
+    margin-right: 1rem;
+  }
+  .countdown ul li span {
+    font-size: 20px;
+  }
+  .countdown ul li.separator {
+    font-size: 20px;
+  }
+  li {
+    font-size: 16px;
+    margin: 0 -30px;
+  }
+  .link_place {
+    height: auto;
+  }
+  .link_place img {
+    width: 24px;
+    height: 24px;
+  }
+  .head_box {
+    font-size: 14px;
+    margin: 5px -30px;
+  }
+  #toggle-countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    max-width: 20px;
+    max-height: 20px;
+    margin-top: 25px;
+  }
+  .place::after {
+    content: none;
+  }
+  .button {
+    padding: 5px 25px;
+    width: 100%;
+  }
 }
