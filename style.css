@@ -1,12 +1,12 @@
 @font-face {
   font-family: "GoodVibesPro"; /* Название шрифта */
-  src: url("fonts/GoodVibesPro.ttf") format("woff2");
+  src: url("fonts/GoodVibesPro.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "UKIJChik"; /* Название шрифта */
-  src: url("fonts/UKIJChiK.ttf") format("woff2");
+  src: url("fonts/UKIJChiK.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
