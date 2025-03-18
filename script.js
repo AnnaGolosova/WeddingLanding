@@ -1,10 +1,24 @@
 document.addEventListener("DOMContentLoaded", function () {
+  if (window.innerWidth < 768) {
+    var toggleBtnMarginTop = "10px";
+    var toggleBtnMarginRight = "60px";
+    var toggleBtnMarginRight2 = "0px";
+  }
   const firstName = "Егор";
-  const secondName = "Gjkbyf";
+  const secondName = " Полины";
   var names = "";
   var staticDate = document.getElementById("static-date");
   const countdownBlock = document.getElementById("countdown");
   var toggleBtn = document.getElementById("toggle-countdown");
+  const modal = document.getElementById("modalWindow");
+  const openBtn = document.getElementById("openModal");
+  const closeBtn = document.querySelector(".close");
+
+  var daysEl = document.getElementById("days");
+  var hoursEl = document.getElementById("hours");
+  var minutesEl = document.getElementById("minutes");
+  var secondsEl = document.getElementById("seconds");
+
   let isCountdownVisible = false;
 
   toggleBtn.addEventListener("click", function () {
@@ -14,15 +28,15 @@ document.addEventListener("DOMContentLoaded", function () {
       staticDate.style.display = "none";
       countdownBlock.style.display = "block";
       toggleBtn.innerText = "date_range"; // Иконка календаря
-      toggleBtn.style.marginTop = "10px";
-      toggleBtn.style.marginRight = "60px";
+      toggleBtn.style.marginTop = toggleBtnMarginTop;
+      toggleBtn.style.marginRight = toggleBtnMarginRight;
     } else {
       staticDate.style.display = "block";
       countdownBlock.style.display = "none";
 
       toggleBtn.innerText = "history"; // Иконка часов
-      toggleBtn.style.marginTop = "10px";
-      toggleBtn.style.marginRight = "5px";
+      toggleBtn.style.marginTop = toggleBtnMarginTop;
+      toggleBtn.style.marginRight = toggleBtnMarginRight2;
     }
   });
 
@@ -45,14 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   document.getElementById("names").innerHTML = names;
   // Get element
-  const modal = document.getElementById("modal");
-  const openBtn = document.getElementById("openModal");
-  const closeBtn = document.querySelector(".close");
-
-  var daysEl = document.getElementById("days");
-  var hoursEl = document.getElementById("hours");
-  var minutesEl = document.getElementById("minutes");
-  var secondsEl = document.getElementById("seconds");
 
   // Count down timer
   function countdownTimer() {
@@ -106,12 +112,22 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.getElementById("allergyCheckbox").addEventListener("change", function () {
-    document.getElementById("allergyInput").classList.toggle("hidden", !this.checked);
+    if (document.getElementById("allergyCheckbox").checked) {
+      document.getElementById("allergyInput").style.display = "block"; // Показываем поле
+    }
+  });
+  document.getElementById("noAllergy").addEventListener("change", function () {
+    if (document.getElementById("noAllergy").checked) {
+      document.getElementById("allergyInput").style.display = "none"; // Скрываем поле
+      document.getElementById("allergyInput").value = ""; // Очищаем поле
+    }
   });
 
   // Form submission handler
-  document.getElementById("weddingForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Отмена стандартной отправки
+  document.getElementById("modal").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Отмена стандартной отправки
     const url =
       "https://script.google.com/macros/s/AKfycbwPo7hrWECcFQDXUUdbzoaTy3MeMsXpugtG5DLGNgEPo4mimke6UejO408HBImgaUcsFQ/exec"; // URL og Google App script
     const formData = new FormData(this);
@@ -129,13 +145,23 @@ document.addEventListener("DOMContentLoaded", function () {
         this.reset();
       })
       .catch((error) => console.error("Ошибка:", error));
+    toggleBtn.click();
+    // const id = document.getElementById("idInput").value;
+    // const come = document.getElementById("attend").checked ? "Да" : "Нет";
+    // const drink = document.querySelector('input[name="drink"]:checked')?.value || "Не выбрано";
+    // const allergy = document.getElementById("allergyCheckbox").checked
+    //   ? document.getElementById("allergyInput").value
+    //   : "Нет";
 
-    const attend = document.getElementById("attend").checked ? "Да" : "Нет";
-    const drink = document.querySelector('input[name="drink"]:checked')?.value || "Не выбрано";
-    const allergy = document.getElementById("allergyCheckbox").checked
-      ? document.getElementById("allergyInput").value
-      : "Нет";
+    fetch(url, {
+      method: "POST",
+      body: formData,
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((response) => response.text())
+      .then((data) => alert(data))
+      .catch((error) => console.error("Ошибка:", error));
 
-    alert(`Придёшь: ${attend}\nНапитки: ${drink}\nАллергия: ${allergy}`);
+    modal.style.display = "none";
   });
 });

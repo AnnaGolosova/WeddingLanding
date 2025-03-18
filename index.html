@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Invite Wedding Rozhkov</title>
+    <title>Свадьба Егора и Полины</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
     <link
@@ -42,6 +42,7 @@
               Один день в этом году будет для нас особенным и мы хотим провести его в кругу близких и друзей. С большим
               удовольствием приглашаем вас на знаменательный праздник - нашу свадьбу!
             </p>
+            <p id="ps">Полина и Егор</p>
           </div>
           <div class="date-container">
             <div class="date">
@@ -61,7 +62,7 @@
               </div>
             </div>
 
-            <button id="toggle-countdown" class="toggle-btn material-symbols-outlined">date_range</button>
+            <button id="toggle-countdown" class="toggle-btn material-symbols-outlined">history</button>
           </div>
           <div class="box">
             <div class="place box_item">
@@ -92,16 +93,16 @@
             </ul>
           </div>
           <div class="button" id="openModal">Подвердить</div>
-          <div id="modal" class="modal">
-            <div class="modal-content">
+          <div id="modalWindow" class="modal">
+            <form id="modal" class="modal-content">
               <span class="close">&times;</span>
-              <div class="attend">
-                <label for="cheese">Придёте?</label>
-                <label class="item"><input type="radio" name="cheese" id="yes" /><span>Да</span></label>
-                <label class="item"><input type="radio" name="cheese" id="no" /><span>Нет</span></label>
+              <div class="form-group">
+                <label for="attend">Придёте?</label>
+                <label class="item"><input type="radio" name="attend" id="yes" /><span>Да</span></label>
+                <label class="item"><input type="radio" name="attend" id="no" /><span>Нет</span></label>
               </div>
               <div class="form-group">
-                <label>Что будете пить?</label>
+                <label for="drink">Что будете пить?</label>
                 <div class="radio-group">
                   <label class="item"><input type="checkbox" name="drink" value="wine" /><span>Вино</span></label>
                   <label class="item"><input type="checkbox" name="drink" value="vodka" /> <span>Водка</span></label>
@@ -125,13 +126,15 @@
                 </div>
               </div>
               <div class="form-group">
-                <label> Есть аллергия на продукты? </label>
-                <label class="item"><input type="radio" name="cheese" id="allergyCheckbox" /><span>Да</span></label>
-                <label class="item"><input type="radio" name="cheese" id="noAllergy" /><span>Нет</span></label>
-                <input type="text" id="allergyInput" class="hidden" placeholder="Укажите продукты" />
+                <label for="allergy"> Есть аллергия на продукты? </label>
+                <div class="radio-group">
+                  <label class="item"><input type="radio" name="allergy" id="allergyCheckbox" /><span>Да</span></label>
+                  <label class="item"><input type="radio" name="allergy" id="noAllergy" /><span>Нет</span></label>
+                  <input type="text" id="allergyInput" class="hidden" placeholder="Укажите продукты" />
+                </div>
               </div>
-              <div class="button" id="answer">Подвердить</div>
-            </div>
+              <button class="button" id="submit">Подвердить</button>
+            </form>
           </div>
         </div>
         <div class="side right">

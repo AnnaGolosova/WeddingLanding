@@ -68,6 +68,10 @@ li {
   box-shadow: 5px 5px 5px 5px grey;
 }
 
+#ps {
+  text-align: right;
+}
+
 .logo {
   display: block;
   margin-left: auto;
@@ -160,21 +164,6 @@ li {
   font-size: 48px;
   color: #000;
 }
-/* .countdown ul li span::after,
-.countdown ul li span::before {
-  position: absolute;
-  content: "";
-  height: 30px;
-  width: 1px;
-  background-color: #000;
-  margin-top: 10px;
-}
-.countdown ul li span::after {
-  margin-left: 10px;
-}
-.countdown ul li span::before {
-  margin-right: 10px;
-} */
 
 .countdown ul li.separator {
   font-family: monospace;
@@ -211,10 +200,6 @@ li {
   cursor: pointer;
   border-radius: 5px;
   z-index: 10;
-}
-
-.static-date {
-  /* display: block; */
 }
 
 .toggle-btn:hover {
@@ -305,9 +290,9 @@ li {
 .box::after {
   content: "";
   position: absolute;
-  bottom: -5px; /* Отступ линии от текста */
-  width: 70%; /* Длина линии */
-  height: 1px; /* Толщина линии */
+  bottom: -5px;
+  width: 70%;
+  height: 1px;
   background-color: black;
 }
 
@@ -318,7 +303,6 @@ li {
   text-align: center;
   padding: 10px 40px;
   border-radius: 6px;
-  width: 70%;
 }
 
 .button:hover {
@@ -366,6 +350,10 @@ li {
 }
 
 .form-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 15px;
 }
 label {
@@ -393,9 +381,6 @@ label {
 }
 
 .item {
-  /* border: solid 1px black;
-  border-radius: 5px;
-  margin: 5px 0; */
   width: 200px;
   max-width: 200px;
 }
@@ -406,11 +391,14 @@ label {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
+.item input[type="text"] {
+  font-size: 16px;
+}
 .item input + span {
   border: solid 1px black;
   border-radius: 5px;
   padding: 5px 0;
-  margin: -22px 0 5px 0;
+  margin: -22px 0 0 0;
   display: block;
 }
 
@@ -426,7 +414,11 @@ label {
   padding: 5px 0;
   margin-top: -22px;
 }
-
+#allergyInput {
+  margin: auto;
+  font-size: 16px;
+  text-align: center;
+}
 @media only screen and (max-width: 1024px) {
   .main {
     justify-content: unset;
@@ -558,10 +550,16 @@ label {
     font-size: 14px;
     max-width: 20px;
     max-height: 20px;
-    margin-top: 25px;
+    margin-top: 10px;
+  }
+  .place {
+    padding-bottom: 0px;
   }
   .place::after {
     content: none;
+  }
+  .box::after {
+    width: 141%;
   }
   .button {
     padding: 5px 25px;
