@@ -1,16 +1,3 @@
-/* Обнуление стилей */
-@font-face {
-  font-family: "GoodVibesPro"; /* Название шрифта */
-  src: url("fonts/GoodVibesPro.ttf") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "UKIJChik"; /* Название шрифта */
-  src: url("fonts/UKIJChiK.ttf") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-}
 * {
   margin: 0;
   padding: 0;
