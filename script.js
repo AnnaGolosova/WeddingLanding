@@ -129,7 +129,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Отмена стандартной отправки
     const url =
-      "https://script.google.com/macros/s/AKfycbwPo7hrWECcFQDXUUdbzoaTy3MeMsXpugtG5DLGNgEPo4mimke6UejO408HBImgaUcsFQ/exec"; // URL og Google App script
+      "https://script.google.com/macros/s/AKfycbxhpbsQO2acMs37ejCKoB2iaeCVcQRwRIONypgzeG2TgbHTPbtCo9m-nBF0EwyTwaCGtA/exec"; // URL og Google App script
+    
     const formData = new FormData(this);
 
     // Добавляем токен
