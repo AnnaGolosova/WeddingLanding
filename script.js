@@ -152,16 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // const allergy = document.getElementById("allergyCheckbox").checked
     //   ? document.getElementById("allergyInput").value
     //   : "Нет";
-
-    fetch(url, {
-      method: "POST",
-      body: formData,
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((response) => response.text())
-      .then((data) => alert(data))
-      .catch((error) => console.error("Ошибка:", error));
-
     modal.style.display = "none";
   });
 });
