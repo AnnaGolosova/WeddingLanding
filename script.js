@@ -1,12 +1,46 @@
+async function fetchData() {
+  const apiUrl =
+    "https://script.google.com/macros/s/AKfycbxk44rOMGmIGXimFRObsNOLozRhjoLZ1l6HtQOnhgAVdYL8QfhFjr-q5GUr9lvrJxTZLQ/exec";
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    // Получаем ID из URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchID = urlParams.get("id1");
+    const searchID2 = urlParams.get("id2");
+    console.log(searchID);
+
+    if (!searchID && !searchID2) {
+      console.log("Введите ID в URL (например, ?id1=101)");
+      return;
+    }
+    // Find name by ID
+    const foundEntry = data.find((entry) => entry.id == searchID);
+    const foundEntry2 = data.find((entry) => entry.id == searchID2);
+    console.log(foundEntry);
+    console.log(foundEntry2);
+    var text;
+
+    if (!foundEntry2) {
+      text = `${foundEntry.name}`;
+    } else {
+      text = `${foundEntry.name} <span class="union">и</span> ${foundEntry2.name}`;
+    }
+    document.getElementById("names").innerHTML = text;
+  } catch (error) {
+    document.getElementById("names").innerText = "Ошибка загрузки данных";
+    console.error("Ошибка:", error);
+  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   if (window.innerWidth < 768) {
-    var toggleBtnMarginTop = "10px";
+    var toggleBtnMarginTop = "5px";
     var toggleBtnMarginRight = "60px";
     var toggleBtnMarginRight2 = "0px";
   }
-  const firstName = "Егор";
-  const secondName = " Полины";
-  var names = "";
+
   var staticDate = document.getElementById("static-date");
   const countdownBlock = document.getElementById("countdown");
   var toggleBtn = document.getElementById("toggle-countdown");
@@ -49,16 +83,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Запуск при загрузке страницы
+  fetchData();
+
   replaceElements();
-  // Find element and change inner.
-  if (secondName == null || secondName == "") {
-    names = `${firstName}`;
-  } else {
-    names = `${firstName} <span class="union">и</span> ${secondName}`;
-  }
-  document.getElementById("names").innerHTML = names;
-  // Get element
 
   // Count down timer
   function countdownTimer() {
@@ -130,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Отмена стандартной отправки
     const url =
       "https://script.google.com/macros/s/AKfycbxhpbsQO2acMs37ejCKoB2iaeCVcQRwRIONypgzeG2TgbHTPbtCo9m-nBF0EwyTwaCGtA/exec"; // URL og Google App script
-    
+
     const formData = new FormData(this);
 
     // Добавляем токен
