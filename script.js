@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var toggleBtnMarginTop = "5px";
     var toggleBtnMarginRight = "60px";
     var toggleBtnMarginRight2 = "0px";
+    var toggleBtnPaddingBottom = "15px";
   }
 
   var staticDate = document.getElementById("static-date");
@@ -47,6 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const modal = document.getElementById("modalWindow");
   const openBtn = document.getElementById("openModal");
   const closeBtn = document.querySelector(".close");
+  const dateSelector = document.querySelector(".date");
 
   var daysEl = document.getElementById("days");
   var hoursEl = document.getElementById("hours");
@@ -64,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
       toggleBtn.innerText = "date_range"; // Иконка календаря
       toggleBtn.style.marginTop = toggleBtnMarginTop;
       toggleBtn.style.marginRight = toggleBtnMarginRight;
+      dateSelector.style.paddingBottom = toggleBtnPaddingBottom;
     } else {
       staticDate.style.display = "block";
       countdownBlock.style.display = "none";
@@ -151,35 +154,45 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Form submission handler
-  document.getElementById("modal").addEventListener("submit", function (event) {
+
+  document.getElementById("submit").addEventListener("click", async function (event) {
     event.preventDefault();
 
-    // Отмена стандартной отправки
-    const url =
-      "https://script.google.com/macros/s/AKfycbxhpbsQO2acMs37ejCKoB2iaeCVcQRwRIONypgzeG2TgbHTPbtCo9m-nBF0EwyTwaCGtA/exec"; // URL og Google App script
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id1");
+    const id2 = urlParams.get("id2");
 
-    const formData = new FormData(this);
+    if (!id && !id2) {
+      alert("Ошибка: ID не указан в URL!");
+      return;
+    }
 
-    // Добавляем токен
-    formData.append("token", "my_secure_token_12345");
+    const attend = document.querySelector('input[name="attend"]:checked')?.id || "Не указано";
+    const drinks = [...document.querySelectorAll('input[name="drink"]:checked')].map((el) => el.value);
+    const allergy =
+      document.querySelector('input[name="allergy"]:checked')?.id === "allergyCheckbox"
+        ? document.getElementById("allergyInput").value
+        : "Нет";
 
-    fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        alert("Данные отправлены! Спасибо!");
-        this.reset();
-      })
-      .catch((error) => console.error("Ошибка:", error));
+    const data = { id, id2, attend, drink: drinks, allergy };
+
+    const apiUrl =
+      "https://script.google.com/macros/s/AKfycbxy9a_F_FcpAZKwDHT89U96SFVqdnPdYawgdMy70N6S_6tuNY2kFrOcCCzFddSEiwRgGA/exec";
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+        mode: "no-cors",
+      });
+
+      alert("Ответ записан!");
+    } catch (error) {
+      console.error("Ошибка:", error);
+      alert("Не удалось отправить данные");
+    }
     toggleBtn.click();
-    // const id = document.getElementById("idInput").value;
-    // const come = document.getElementById("attend").checked ? "Да" : "Нет";
-    // const drink = document.querySelector('input[name="drink"]:checked')?.value || "Не выбрано";
-    // const allergy = document.getElementById("allergyCheckbox").checked
-    //   ? document.getElementById("allergyInput").value
-    //   : "Нет";
     modal.style.display = "none";
   });
 });
