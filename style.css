@@ -380,8 +380,8 @@ label {
 }
 
 .item {
-  width: 200px;
-  max-width: 200px;
+  width: 150px;
+  max-width: 150px;
 }
 .item input[type="checkbox"],
 .item input[type="radio"] {
