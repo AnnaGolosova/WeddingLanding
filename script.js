@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //   if (event.target === modal) {
   //     modal.style.display = "none";
   //   }
-  });
+  // });
 
   document.getElementById("allergyCheckbox").addEventListener("change", function () {
     if (document.getElementById("allergyCheckbox").checked) {
