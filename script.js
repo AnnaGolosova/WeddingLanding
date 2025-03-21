@@ -135,10 +135,10 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Close when to click by outside window
-  window.addEventListener("click", (event) => {
-    if (event.target === modal) {
-      modal.style.display = "none";
-    }
+  // window.addEventListener("click", (event) => {
+  //   if (event.target === modal) {
+  //     modal.style.display = "none";
+  //   }
   });
 
   document.getElementById("allergyCheckbox").addEventListener("change", function () {
@@ -194,13 +194,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     toggleBtn.click();
     modal.style.display = "none";
-  });
-  window.addEventListener("resize", function () {
-    const inputFields = document.querySelectorAll("input, textarea");
-    const keyboardHeight = window.innerHeight; // Высота окна с учетом клавиатуры
-
-    inputFields.forEach((input) => {
-      input.style.marginBottom = `${keyboardHeight / 2}px`; // Установить отступ
-    });
   });
 });
